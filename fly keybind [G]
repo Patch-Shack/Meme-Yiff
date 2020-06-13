@@ -1,16 +1,16 @@
-local FLYING = false
+local newFLYING = false
 local Players = game:GetService("Players")
-local IYMouse = Players.LocalPlayer:GetMouse()
+local aIYMouse = Players.LocalPlayer:GetMouse()
 
 Players.LocalPlayer.CharacterAdded:Connect(function()
-	FLYING = false
+	newFLYING = false
 end)
 
-iyflyspeed = 2
-vehicleflyspeed = 1
-function sFLY(vfly)
+NEWiyflyspeed = 2
+NEWvehicleflyspeed = 1
+function sFLY(vefly)
 	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild('HumanoidRootPart') and Players.LocalPlayer.Character:FindFirstChild('Humanoid')
-	repeat wait() until IYMouse
+	repeat wait() until aIYMouse
 	
 	local T = Players.LocalPlayer.Character.HumanoidRootPart
 	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
@@ -18,7 +18,7 @@ function sFLY(vfly)
 	local SPEED = 0
 	
 	local function FLY()
-		FLYING = true
+		newFLYING = true
 		local BG = Instance.new('BodyGyro', T)
 		local BV = Instance.new('BodyVelocity', T)
 		BG.P = 9e4
@@ -28,7 +28,7 @@ function sFLY(vfly)
 		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
 		spawn(function()
 			repeat wait()
-			if not vfly then
+			if not vefly then
 				Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
 			end
 			if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
@@ -45,7 +45,7 @@ function sFLY(vfly)
 				BV.velocity = Vector3.new(0, 0, 0)
 			end
 			BG.cframe = workspace.CurrentCamera.CoordinateFrame
-			until not FLYING
+			until not newFLYING
 			CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
 			lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
 			SPEED = 0
@@ -54,46 +54,46 @@ function sFLY(vfly)
 			Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
 		end)
 	end
-	IYMouse.KeyDown:connect(function(KEY)
+	aIYMouse.KeyDown:connect(function(KEY)
 		if KEY:lower() == 'w' then
-			if vfly then
-				CONTROL.F = vehicleflyspeed
+			if vefly then
+				CONTROL.F = NEWvehicleflyspeed
 			else
-				CONTROL.F = iyflyspeed
+				CONTROL.F = NEWiyflyspeed
 			end
 		elseif KEY:lower() == 's' then
-			if vfly then
-				CONTROL.B = - vehicleflyspeed
+			if vefly then
+				CONTROL.B = - NEWvehicleflyspeed
 			else
-				CONTROL.B = - iyflyspeed
+				CONTROL.B = - NEWiyflyspeed
 			end
 		elseif KEY:lower() == 'a' then
-			if vfly then
-				CONTROL.L = - vehicleflyspeed
+			if vefly then
+				CONTROL.L = - NEWvehicleflyspeed
 			else
-				CONTROL.L = - iyflyspeed
+				CONTROL.L = - NEWiyflyspeed
 			end
 		elseif KEY:lower() == 'd' then 
-			if vfly then
-				CONTROL.R = vehicleflyspeed
+			if vefly then
+				CONTROL.R = NEWvehicleflyspeed
 			else
-				CONTROL.R = iyflyspeed
+				CONTROL.R = NEWiyflyspeed
             end
         elseif KEY:lower() == 'e' then
-            if vfly then
-                CONTROL.Q = vehicleflyspeed*2
+            if vefly then
+                CONTROL.Q = NEWvehicleflyspeed*2
             else
-                CONTROL.Q = iyflyspeed*2
+                CONTROL.Q = NEWiyflyspeed*2
             end
         elseif KEY:lower() == 'q' then
-            if vfly then
-                CONTROL.E = -vehicleflyspeed*2
+            if vefly then
+                CONTROL.E = -NEWvehicleflyspeed*2
             else
-                CONTROL.E = -iyflyspeed*2
+                CONTROL.E = -NEWiyflyspeed*2
             end
 		end
 	end)
-	IYMouse.KeyUp:connect(function(KEY)
+	aIYMouse.KeyUp:connect(function(KEY)
 		if KEY:lower() == 'w' then
 			CONTROL.F = 0
 		elseif KEY:lower() == 's' then
@@ -112,16 +112,17 @@ function sFLY(vfly)
 end
 
 function NOFLY()
-	FLYING = false
+	newFLYING = false
 	Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
 end
 
-IYMouse.KeyDown:Connect(function(key)
+aIYMouse.KeyDown:Connect(function(key)
 	if key == "g" then
-		if FLYING == true then
+		if newFLYING == true then
 			NOFLY()
 		else
 			sFLY()
 		end
 	end
 end)
+-- yes
