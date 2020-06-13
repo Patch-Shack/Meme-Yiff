@@ -1,2 +1,3 @@
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Patch-Shack/Meme-Yiff/master/fly%20keybind%20%5BG%5D'))();
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Patch-Shack/Meme-Yiff/master/infinite%20yield%20%5Bmain%5D'))();
+wait(2)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Patch-Shack/Meme-Yiff/master/fly%20keybind%20%5BG%5D'))();
